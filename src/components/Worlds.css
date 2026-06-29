@@ -1,0 +1,77 @@
+.worlds {
+  background: var(--bg-section);
+  text-align: center;
+}
+
+.worlds__head {
+  margin-bottom: 44px;
+}
+
+.worlds__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+.world-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
+  border-radius: 14px;
+  overflow: hidden;
+  text-align: left;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.world-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--accent);
+  box-shadow: 0 0 28px color-mix(in srgb, var(--accent) 40%, transparent);
+}
+
+.world-card__art {
+  position: relative;
+  height: 150px;
+  background:
+    repeating-linear-gradient(
+      45deg,
+      color-mix(in srgb, var(--accent) 18%, var(--bg-deep)),
+      color-mix(in srgb, var(--accent) 18%, var(--bg-deep)) 12px,
+      var(--bg-deep) 12px,
+      var(--bg-deep) 24px
+    );
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  filter: saturate(0.6);
+  transition: filter 0.25s ease;
+}
+
+.world-card:hover .world-card__art {
+  filter: saturate(1.4) brightness(1.1);
+}
+
+.world-card__tag {
+  margin: 12px;
+  background: var(--bg-deep);
+  color: var(--accent);
+  font-size: 0.75rem;
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--accent);
+}
+
+.world-card__body {
+  padding: 20px;
+}
+
+.world-card__name {
+  font-family: var(--font-pixel);
+  font-size: 0.95rem;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+
+.world-card__desc {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+}

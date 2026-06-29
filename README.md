@@ -60,7 +60,7 @@ placeholder temporal en CSS que se reemplaza al meter el `.json`.
 | 1 | Integrante 1 | **Logo que se ensambla con pixeles** | Logo | `logo.json` | `Navbar.jsx` |
 | 2 | Integrante 2 | **Pix saltando (el cubo central)** | Personaje / ilustración | `pix.json` | `Hero.jsx` |
 | 3 | Integrante 3 | **Fondo neón animado** (estrellas, grid synthwave) | Fondo decorativo | `fondo.json` o `fondo.mp4` | `Hero.jsx` |
-| 4 | Integrante 4 | **Botón "JUGAR" con glitch/pulso** | Botón / UI | `boton.json` | `Hero.jsx` |
+| 4 | Carlos Robles M. | **Botón "JUGAR" con glitch/pulso** | Botón / UI | `boton.json` | `Hero.jsx` |
 
 > Variedad cubierta: **logo + personaje + fondo + botón** = cuatro aplicaciones
 > distintas, justo lo que pide la rúbrica ✅

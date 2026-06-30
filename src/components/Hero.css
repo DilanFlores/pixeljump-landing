@@ -183,7 +183,6 @@
   z-index: 2;
 }
 
-/* El hueco de la animación se coloca encima del botón */
 .hero__play-anim {
   position: absolute;
   inset: 0;

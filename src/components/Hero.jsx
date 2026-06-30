@@ -1,13 +1,15 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import LottieSlot from './LottieSlot'
 // Animaciones de After Effects (descomentar cuando tengás cada .json):
-// import pixData from '../animations/pix.json'        // Animación #2 (Integrante 2)
 // import fondoData from '../animations/fondo.json'    // Animación #3 (Integrante 3)
 // import botonData from '../animations/boton.json'    // Animación #4 (Integrante 4)
 import './Hero.css'
 
 export default function Hero() {
   const layersRef = useRef(null)
+  // Animación #2 (Pix, el cubo): video MP4/WebM exportado desde After Effects
+  // (public/assets/images/pix.webm + pix.mp4). Si no carga, se muestra el placeholder CSS.
+  const [pixVideoError, setPixVideoError] = useState(false)
 
   // Efecto parallax SOLO del placeholder de fondo (mientras no esté la animación de AE).
   // Cuando metás el fondo animado de After Effects, este efecto deja de aplicar.
@@ -54,15 +56,30 @@ export default function Hero() {
         </p>
 
         {/* ===== ANIMACIÓN #2 (Integrante 2): Personaje "Pix" — el cubo central (After Effects) =====
-            Reemplazá el placeholder por:  <LottieSlot data={pixData} className="hero__pix" loop /> */}
-        <LottieSlot className="hero__pix" loop>
-          {/* Placeholder temporal del cubo, hasta que esté el Lottie de Pix */}
-          <div className="pix-placeholder" aria-label="Personaje Pix">
-            <span className="pix-placeholder__eye" />
-            <span className="pix-placeholder__eye pix-placeholder__eye--right" />
-            <span className="pix-placeholder__mouth" />
-          </div>
-        </LottieSlot>
+            Renderizado desde AE como video con transparencia (pix.webm con alpha real +
+            pix.mp4 de respaldo). Si los archivos no cargan, se muestra el placeholder CSS. */}
+        <div className="hero__pix">
+          {pixVideoError ? (
+            <div className="pix-placeholder" aria-label="Personaje Pix">
+              <span className="pix-placeholder__eye" />
+              <span className="pix-placeholder__eye pix-placeholder__eye--right" />
+              <span className="pix-placeholder__mouth" />
+            </div>
+          ) : (
+            <video
+              className="hero__pix-video"
+              autoPlay
+              loop
+              muted
+              playsInline
+              onError={() => setPixVideoError(true)}
+              aria-label="Personaje Pix saltando"
+            >
+              <source src="/assets/images/pix-animation/pix.webm" type="video/webm" />
+              <source src="/assets/images/pix-animation/pix.mp4" type="video/mp4" />
+            </video>
+          )}
+        </div>
 
         <div className="hero__actions">
           {/* ===== ANIMACIÓN #4 (Integrante 4): Botón "JUGAR" animado (After Effects) =====

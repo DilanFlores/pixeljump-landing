@@ -45,14 +45,20 @@ export default function Hero() {
 
         <div className="hero__actions">
           {/* ===== ANIMACIÓN #4 (Integrante 4): Botón "JUGAR" animado (After Effects) =====
-              El botón sigue funcionando como enlace. Tu animación (glitch, pulso, etc.)
-              va como capa encima: reemplazá el placeholder del LottieSlot por botonData. */}
+              Exportado desde AE como video con alpha (glitch + pulso neón, loop de 1 seg). */}
           <a href="#download" className="btn btn-primary hero__play" data-text="▶ JUGAR">
             <span className="hero__play-label">▶ JUGAR</span>
-            <LottieSlot className="hero__play-anim" loop>
-              {/* Placeholder temporal: glitch en CSS hasta que esté la animación de AE */}
-              <span className="btn-glitch-overlay" data-text="▶ JUGAR" />
-            </LottieSlot>
+            <video
+              className="hero__play-anim"
+              autoPlay
+              muted
+              loop
+              playsInline
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            >
+              <source src="/assets/images/jugar_button.webm" type="video/webm" />
+              <source src="/assets/images/jugar_button.mp4" type="video/mp4" />
+            </video>
           </a>
           <a href="#about" className="btn btn-ghost">
             Ver más

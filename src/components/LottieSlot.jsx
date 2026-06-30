@@ -14,7 +14,7 @@ import Lottie from 'lottie-react'
  * Mientras no haya animación, muestra el "placeholder" (children) para que
  * la página se vea completa durante el desarrollo.
  */
-export default function LottieSlot({ data, loop = true, className = '', children }) {
+export default function LottieSlot({ data, loop = true, cover = false, className = '', children }) {
   const [animationData, setAnimationData] = useState(data || null)
 
   useEffect(() => {
@@ -26,9 +26,12 @@ export default function LottieSlot({ data, loop = true, className = '', children
     return <div className={`lottie-slot ${className}`}>{children}</div>
   }
 
+  // cover = la animación llena el contenedor sin franjas (como background-size: cover)
+  const rendererSettings = cover ? { preserveAspectRatio: 'xMidYMid slice' } : undefined
+
   return (
     <div className={`lottie-slot ${className}`}>
-      <Lottie animationData={animationData} loop={loop} />
+      <Lottie animationData={animationData} loop={loop} rendererSettings={rendererSettings} />
     </div>
   )
 }

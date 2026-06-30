@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react'
-import LottieSlot from './LottieSlot'
-// ===== ANIMACIÓN #1 (Integrante 1): Logo =====
-// Cuando tengás el logo exportado de After Effects, descomentá la línea de abajo:
-// import logoData from '../animations/logo.json'
+// ===== ANIMACIÓN #1 (Integrante 1): Logo animado (video MP4 desde After Effects) =====
+// Poné tu video exportado en:  public/assets/logo.mp4
+// Si el archivo no existe, se muestra automáticamente el texto "PIXEL JUMP".
 import './Navbar.css'
 
 const LINKS = [
@@ -16,6 +15,8 @@ const LINKS = [
 export default function Navbar() {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  // Si el video del logo no se puede cargar, mostramos el texto de respaldo.
+  const [logoError, setLogoError] = useState(false)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 30)
@@ -26,14 +27,31 @@ export default function Navbar() {
   return (
     <nav className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`}>
       <div className="container navbar__inner">
-        {/* ===== ANIMACIÓN #1 (Integrante 1): Logo animado (After Effects → Lottie) =====
-            Cuando tengás logo.json, pasalo así:  <LottieSlot data={logoData} ... /> */}
+        {/* ===== ANIMACIÓN #1 (Integrante 1): Logo animado (After Effects → MP4) =====
+            Poné el video en public/assets/logo.mp4 y aparece solo. */}
         <a href="#hero" className="navbar__logo">
-          <LottieSlot className="navbar__logo-anim">
-            {/* Placeholder temporal (texto) hasta que esté la animación de AE */}
-            <span className="text-cyan glow-text-cyan">PIXEL</span>
-            <span className="text-magenta glow-text-magenta">JUMP</span>
-          </LottieSlot>
+          <div className="navbar__logo-anim">
+            {logoError ? (
+              // Respaldo: si no hay video todavía, mostramos el texto.
+              <>
+                <span className="text-cyan glow-text-cyan">PIXEL</span>
+                <span className="text-magenta glow-text-magenta">JUMP</span>
+              </>
+            ) : (
+              <video
+                className="navbar__logo-video"
+                autoPlay
+                loop
+                muted
+                playsInline
+                onError={() => setLogoError(true)}
+              >
+                {/* WebM con transparencia real (preferido) y MP4 de respaldo */}
+                <source src="/assets/images/logo.webm" type="video/webm" />
+                <source src="/assets/images/logo.mp4" type="video/mp4" />
+              </video>
+            )}
+          </div>
         </a>
 
         <ul className={`navbar__links ${open ? 'navbar__links--open' : ''}`}>

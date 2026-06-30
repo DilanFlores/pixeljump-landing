@@ -26,6 +26,8 @@
   font-size: 0.95rem;
   display: flex;
   gap: 6px;
+  /* Corre el logo hacia la izquierda (subí el número para correrlo más). Máx ~ -24px */
+  margin-left: -150px;
 }
 
 /* Hueco de la animación del logo (mantiene el tamaño aunque sea Lottie o texto) */
@@ -33,11 +35,19 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  height: 40px;
+  height: 75px;
 }
 
 .navbar__logo-anim > div {
   height: 100%;
+}
+
+/* Video del logo animado (export MP4 de After Effects) */
+.navbar__logo-video {
+  height: 100%;
+  width: auto;
+  display: block;
+  object-fit: contain;
 }
 
 .navbar__links {
